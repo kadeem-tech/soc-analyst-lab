@@ -1,0 +1,24 @@
+<!--
+  Active Response configuration — Wazuh Manager (ossec.conf)
+  Purpose: Automatically block the source IP of a detected SSH brute-force
+  attack (Rule 5712) for 300 seconds using firewall-drop.
+
+  Status: Configuration loaded and validated successfully. Manager confirmed
+  live connection to the active-response dispatch queue (queue/alerts/ar).
+  End-to-end command execution on the agent was not fully validated during
+  testing — see incident report Section 5.1 for details and next steps.
+-->
+<ossec_config>
+  <command>
+    <name>firewall-drop</name>
+    <executable>firewall-drop</executable>
+    <timeout_allowed>yes</timeout_allowed>
+  </command>
+
+  <active-response>
+    <command>firewall-drop</command>
+    <location>local</location>
+    <rules_id>5712</rules_id>
+    <timeout>300</timeout>
+  </active-response>
+</ossec_config>
